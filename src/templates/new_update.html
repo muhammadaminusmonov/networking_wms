@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+{% endblock css %}
+
+{% block title %}
+<h1>{{title}}</h1>
+{% endblock title %}
+
+{% block button %}
+{% endblock button %}
+
+{% block main %}
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Edit Serve</h3>
+    </div>
+    <!-- /.card-header -->
+    <form method="post">
+        {% csrf_token %}
+        <div class="card-body">
+            {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+                {% endif %}
+                {% for error in field.errors %}
+                <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+
+</div>
+{% endblock main %}
+
+{% block js %}
+{% endblock js %}
