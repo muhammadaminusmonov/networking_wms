@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-p8((z&h2)a+5+pt&aqe8x93&xi+p==2hyqwq^g&)x6wroqjtf8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['18.204.202.119']
-
+# ALLOWED_HOSTS = ['18.204.202.119']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -77,7 +77,14 @@ WSGI_APPLICATION = 'wms.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
+    }
 }
 
 
@@ -120,6 +127,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
